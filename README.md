@@ -1,113 +1,103 @@
-# CodeGuardian AI – VS Code AI Debugging Assistant
-
-CodeGuardian AI is an intelligent **Visual Studio Code extension** designed to help developers identify, understand, and resolve programming errors efficiently using **Artificial Intelligence**. The extension captures real-time error diagnostics from the editor, analyzes them using an AI-powered debugging engine, and presents clear explanations along with actionable fix suggestions directly inside VS Code.
-
----
-
-## 🚀 Key Features
-
-- 🔍 Real-time error detection using VS Code diagnostics  
-- 🤖 AI-powered error explanation in simple, human-readable language  
-- 🛠️ Context-aware fix suggestions  
-- 🧠 Beginner-friendly debugging assistance  
-- 📊 Error categorization (Syntax, Runtime, Logical)  
-- 🧾 Debugging history for reference  
-- ⚡ Seamless integration within Visual Studio Code  
+# 🛡️ CodeGuardian AI  
+### AI-Driven Bug Detection & Intelligent Code Debugger for VS Code
 
 ---
 
-## 🧩 How It Works
+# 📌 About the Project
 
-1. Developer writes or runs code inside Visual Studio Code  
-2. The extension listens for errors and warnings  
-3. Error context (message, file, language) is captured  
-4. Context is sent to the AI Debug Engine  
-5. AI returns:
-   - Explanation of the error  
-   - Possible root cause  
-   - Suggested fix  
-6. Results are displayed in a sidebar or notification panel  
+## 🛡️ What is CodeGuardian AI?
+
+CodeGuardian AI is an **AI-Driven Bug Detection and Intelligent Code Debugger** developed as a VS Code Extension with a supporting web-based prototype.
+
+The project focuses on assisting developers by identifying coding errors, explaining them in simple language, and suggesting intelligent fixes — all without interrupting the normal development workflow.
+
+---
+
+## 🎯 Why We Built This Project
+
+During software development, developers spend a significant amount of time:
+
+- Searching for syntax errors  
+- Debugging logical mistakes  
+- Understanding unclear error messages  
+- Switching between browser and editor for solutions  
+
+Our goal was to create a tool that:
+
+- Reduces debugging time  
+- Provides simple explanations  
+- Suggests possible corrections  
+- Works directly inside VS Code  
+
+This improves productivity and helps beginners understand coding errors more effectively.
 
 ---
 
 ## 🏗️ Project Architecture
 
-```
-VS Code Editor
-     ↓
-Error Listener
-     ↓
-Context Builder
-     ↓
-AI Debug Engine
-     ↓
-Suggestion Renderer (UI)
-```
+The project is divided into two major parts:
 
-The project follows a **modular and event-driven VS Code extension architecture**, ensuring scalability, maintainability, and clear separation of concerns.
+### 1️⃣ VS Code Extension
 
----
+- Integrates directly into VS Code  
+- Detects common coding issues  
+- Displays explanations and suggestions  
+- Provides a non-intrusive debugging assistant  
 
-## 📁 Project Structure
+### 2️⃣ Web-Based Prototype
 
-```
-vscode-ai-debugger/
-├── src/
-│   ├── extension.ts
-│   ├── core/
-│   ├── ai/
-│   ├── ui/
-│   └── utils/
-├── docs/
-├── demo/
-├── README.md
-└── report.pdf
-```
+- Simulates debugging workflow  
+- Demonstrates AI-based analysis logic  
+- Built using simple HTML, CSS, and JavaScript  
+- Helps visualize how the system processes code errors  
 
 ---
 
-## 🛠️ Technologies Used
+## ⚙️ How It Works
 
-- Visual Studio Code Extension API  
-- TypeScript  
-- Node.js  
-- Artificial Intelligence (LLM-based analysis)  
-- JSON / REST APIs  
+1. User writes code inside VS Code  
+2. The extension scans for common patterns and errors  
+3. When a bug is detected:
+   - It highlights the issue  
+   - Displays an explanation  
+   - Suggests a possible fix  
+4. The user applies corrections and continues development  
 
----
-
-## 🎯 Project Objective
-
-The primary objective of **CodeGuardian AI** is to reduce the time and effort spent on debugging by providing **intelligent, real-time, and human-readable explanations** of programming errors directly within the development environment.
+The system is designed to remain lightweight and beginner-friendly.
 
 ---
 
-## 📌 Use Cases
+## 🧠 Key Technical Concepts Used
 
-- Beginners learning programming  
-- Students working on coding assignments  
-- Developers debugging unfamiliar codebases  
-- Faster error resolution during software development  
-
----
-
-## 📄 Academic Context
-
-This project is developed as a **mini project for academic evaluation**. It demonstrates the practical application of **Artificial Intelligence in software development tools** and highlights the integration of IDE extensions with AI-based systems.
+- VS Code Extension API  
+- Node.js environment  
+- Pattern-based error detection  
+- JavaScript logic for analysis  
+- Frontend simulation (HTML/CSS/JS)  
 
 ---
 
-## 🔮 Future Enhancements
+## 🚀 What Makes Our Project Unique
 
-- Support for additional programming languages  
-- One-click automatic fix application  
-- Offline rule-based debugging assistance  
-- Integration with version control systems  
+- Beginner-focused explanations  
+- Clean and simple UI  
+- Lightweight performance  
+- Structured development roadmap  
+- Academic project with real-world application potential  
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Team Members
 
-**Gaurav Thakur**  
-**Aman Chaudhary**
-**Sumit Kumar**
+- Gaurav Thakur  
+- Aman Chaudhary  
+- Sumit Kumar  
+
+---
+
+## 📄 Project Status
+
+✅ Initial Stable Version Released  
+🔄 Future enhancements planned for improved AI accuracy and expanded language support  
+
+---
