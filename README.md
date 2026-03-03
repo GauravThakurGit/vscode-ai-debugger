@@ -43,14 +43,6 @@ The project is divided into two major parts:
 - Detects common coding issues  
 - Displays explanations and suggestions  
 - Provides a non-intrusive debugging assistant  
-
-### 2️⃣ Web-Based Prototype
-
-- Simulates debugging workflow  
-- Demonstrates AI-based analysis logic  
-- Built using simple HTML, CSS, and JavaScript  
-- Helps visualize how the system processes code errors  
-
 ---
 
 ## ⚙️ How It Works
@@ -73,7 +65,6 @@ The system is designed to remain lightweight and beginner-friendly.
 - Node.js environment  
 - Pattern-based error detection  
 - JavaScript logic for analysis  
-- Frontend simulation (HTML/CSS/JS)  
 
 ---
 
