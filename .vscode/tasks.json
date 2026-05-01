@@ -1,13 +1,11 @@
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"args": ["--extensionDevelopmentPath=${workspaceFolder}"],
-			"outFiles": ["${workspaceFolder}/out/**/*.js"],
-			"preLaunchTask": "${workspaceFolder}/.vscode/tasks.json"
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start CodeGuardian Backend",
+      "type": "shell",
+      "command": "npm run start:server",
+      "problemMatcher": []
+    }
+  ]
 }

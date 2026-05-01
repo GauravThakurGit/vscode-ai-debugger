@@ -1,45 +1,175 @@
 {
   "name": "codeguardian-ai",
   "displayName": "CodeGuardian AI",
-  "description": "AI-Driven Bug Detection and Intelligent Code Debugger",
+  "description": "An AI-powered debugging companion for VS Code with real-time suggestions, clear explanations, and secure backend support.",
   "version": "0.1.0",
+  "publisher": "maxro",
   "engines": {
-    "vscode": "^1.60.0"
+    "vscode": "^1.96.0"
   },
   "categories": [
-    "Debuggers",
-    "Linters"
+    "Other"
   ],
-  "activationEvents": ["onStartupFinished"],
-  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:javascript",
+    "onLanguage:python",
+    "onLanguage:java"
+  ],
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "codeguardian.analyzeCode",
-        "title": "CodeGuardian: Analyze Code"
+        "command": "codeguardian.analyzeActiveFile",
+        "title": "CodeGuardian AI: Analyze Active File",
+        "icon": "$(search)"
       },
       {
-        "command": "codeguardian.showDebugPanel",
-        "title": "CodeGuardian: Show Debug Panel"
+        "command": "codeguardian.applyAllSuggestions",
+        "title": "CodeGuardian AI: Apply All Quick Fixes",
+        "icon": "$(run-all)"
+      },
+      {
+        "command": "codeguardian.setGeminiApiKey",
+        "title": "CodeGuardian AI: Set Gemini API Key",
+        "icon": "$(key)"
+      },
+      {
+        "command": "codeguardian.validateGeminiApiKey",
+        "title": "CodeGuardian AI: Validate Gemini API Key",
+        "icon": "$(check)"
+      },
+      {
+        "command": "codeguardian.clearGeminiApiKey",
+        "title": "CodeGuardian AI: Clear Gemini API Key",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "codeguardian.openSessionSummary",
+        "title": "CodeGuardian AI: Open Session Summary",
+        "icon": "$(notebook)"
+      },
+      {
+        "command": "codeguardian.revealSuggestion",
+        "title": "CodeGuardian AI: Reveal Suggestion",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "codeguardian.markSuggestionHelpful",
+        "title": "CodeGuardian AI: Mark Suggestion Helpful",
+        "icon": "$(thumbsup)"
+      },
+      {
+        "command": "codeguardian.markSuggestionNotHelpful",
+        "title": "CodeGuardian AI: Mark Suggestion Not Helpful",
+        "icon": "$(thumbsdown)"
+      },
+      {
+        "command": "codeguardian.applySuggestedFix",
+        "title": "CodeGuardian AI: Apply Suggested Fix",
+        "icon": "$(wrench)"
+      },
+      {
+        "command": "codeguardian.recordAppliedFix",
+        "title": "CodeGuardian AI: Record Applied Fix"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "CodeGuardian AI",
+      "properties": {
+        "codeguardian.serverUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:4000",
+          "description": "Base URL for the CodeGuardian backend when backendMode is set to server."
+        },
+        "codeguardian.serverToken": {
+          "type": "string",
+          "default": "",
+          "description": "Bearer token for the CodeGuardian backend API. Leave empty for localhost demo mode."
+        },
+        "codeguardian.backendMode": {
+          "type": "string",
+          "enum": [
+            "local",
+            "server",
+            "gemini"
+          ],
+          "default": "gemini",
+          "description": "Choose where CodeGuardian performs analysis. Use gemini to run analysis through Google Gemini API."
+        },
+        "codeguardian.geminiModel": {
+          "type": "string",
+          "default": "gemini-2.5-flash",
+          "description": "Gemini model used for CodeGuardian analysis when backendMode is gemini."
+        },
+        "codeguardian.promptForGeminiKeyOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prompt for a Gemini API key when CodeGuardian activates in gemini mode."
+        },
+        "codeguardian.analysisDebounceMs": {
+          "type": "number",
+          "default": 2000,
+          "minimum": 500,
+          "description": "Delay before re-running analysis after a document edit."
+        },
+        "codeguardian.enableConsoleLogHints": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show low-severity hints for debug output like console.log, print, and System.out.println."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeGuardianContainer",
+          "title": "CodeGuardian",
+          "icon": "media/shield.svg"
+        }
+      ]
+    },
+    "views": {
+      "codeGuardianContainer": [
+        {
+          "id": "codeGuardianView",
+          "name": "Live Suggestions",
+          "type": "webview"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "codeguardian.analyzeActiveFile",
+          "when": "view == codeGuardianView",
+          "group": "navigation"
+        },
+        {
+          "command": "codeguardian.applyAllSuggestions",
+          "when": "view == codeGuardianView",
+          "group": "navigation"
+        },
+        {
+          "command": "codeguardian.openSessionSummary",
+          "when": "view == codeGuardianView",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.60.0",
-    "@types/node": "^16.0.0",
-    "typescript": "^4.3.0",
-    "eslint": "^7.27.0",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0"
+    "start:server": "node server/index.js",
+    "test": "node --test",
+    "verify": "node --check src/extension.js && node --check src/providers/codeActionProvider.js && node --check src/providers/hoverProvider.js && node --check src/providers/suggestionViewProvider.js && node --check src/services/analysisService.js && node --check src/services/diagnosticUtils.js && node --check src/services/suggestionUtils.js && node --check src/state/sessionStore.js && node --check server/index.js && node --check server/app.js && node --check server/services/feedbackStore.js && node --check server/services/llmClient.js && node --check lib/analyzer.js && node --check media/sidebar.js"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "acorn": "^8.14.1",
+    "acorn-walk": "^8.3.4",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "zod": "^3.24.2"
   }
 }

@@ -1,7 +1,7 @@
-out/
-dist/
-node_modules/
-.DS_Store
-*.vsix
+node_modules
 .env
-.vscode-test/
+.DS_Store
+coverage
+dist
+*.vsix
+data/*.bak

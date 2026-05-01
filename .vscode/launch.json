@@ -1,13 +1,19 @@
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"args": ["--extensionDevelopmentPath=${workspaceFolder}"],
-			"outFiles": ["${workspaceFolder}/out/**/*.js"],
-			"preLaunchTask": "${defaultBuildTask}"
-		}
-	]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run CodeGuardian Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--disable-extensions",
+        "--disable-workspace-trust",
+        "--skip-welcome",
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": [],
+      "sourceMaps": false
+    }
+  ]
 }
